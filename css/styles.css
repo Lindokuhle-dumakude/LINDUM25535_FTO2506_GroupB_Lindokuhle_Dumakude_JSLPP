@@ -1,0 +1,432 @@
+/* Import google font */
+
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+
+:root {
+  --layoutBackground-color: #f4f7fd; /* Light Grey */
+  --boardTitle-color: #ffffff; /* white */
+  --SidebarBackground-color: #ffffff; /* white */
+  --CardBackground-color: #ffffff; /* white */
+  --btn-color: #635fc7; /* main purple */
+  --btnHover-color: #4b47b7; /* secondary purple */
+  --TODOicon-color: #49c4e5; /* light blue */
+  --DOINGicon-color: #8471f2; /* purple */
+  --DONEicon-color: #67e2ae; /* light green */
+  --h4Text-color: #828fa3; /* medium Grey */
+  --h2Text-color: #000112; /* black */
+  --text-color: #000112; /* black */
+  --btnText-color: #ffffff; /* white */
+  --taskCloseBtn: red; /* red */
+}
+
+/* Default Styling */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", Arial, Helvetica, sans-serif;
+  color: var(--text-color);
+  background-color: var(--layoutBackground-color);
+  width: 100%;
+  min-height: 100vh;
+}
+
+.flex-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Navigation sidebar styling */
+
+.kanban-sidebar {
+  width: 18.75rem;
+  height: 100vh;
+  background-color: var(--SidebarBackground-color);
+  border-right: 1px solid #e4ebfa;
+}
+
+.kanban-logo-div {
+  margin: 33px 113px 54px 34px; /* Spacing around logo */
+  display: flex;
+  justify-content: flex-start;
+}
+
+.kanban-logo {
+  width: 100%;
+}
+
+.kanban-nav-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.allBoards-heading {
+  font-weight: 700;
+  font-size: 0.75rem;
+  line-height: 100%;
+  letter-spacing: 0.15rem;
+  color: var(--h4Text-color);
+  padding: 0 12px 0 50px;
+}
+
+.launchCareer-btn {
+  width: 17.25rem;
+  height: 3rem;
+  border: none;
+  border-top-right-radius: 6.25rem;
+  border-bottom-right-radius: 6.25rem;
+  background-color: var(--btn-color);
+  font-family: "Plus Jakarta Sans";
+  color: var(--btnText-color);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 100%;
+  margin: 0.0625rem 0;
+  padding: 0;
+  letter-spacing: 0;
+  overflow: hidden;
+}
+
+/* btn hover effect */
+
+.launchCareer-btn:hover {
+  background-color: var(--btnHover-color);
+  cursor: pointer;
+}
+
+/* Main layout styling */
+
+.layout {
+  flex: 1;
+  overflow: hidden;
+  width: 100%;
+}
+
+.column-header {
+  width: 100%;
+  height: 6rem;
+  background-color: var(--boardTitle-color);
+  border-bottom: 1px solid #e4ebfa;
+  position: relative;
+}
+
+.column-heading {
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 100%;
+  margin: 1px 0;
+  letter-spacing: 0;
+  padding-top: 2rem;
+  padding-left: 2rem;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+/* task column styling */
+
+.task-card {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1.25rem;
+  padding-left: 2.1875rem;
+  box-sizing: border-box;
+}
+
+.status-heading {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 0.75rem;
+  line-height: 100%;
+  margin: 0.0625rem 0;
+  letter-spacing: 0.15rem;
+  color: var(--h4Text-color);
+  margin-bottom: 2rem;
+}
+
+main {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(3, minmax(0, 304px));
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 100%;
+  margin: 0.0625rem 0;
+  letter-spacing: 0;
+}
+
+.column-div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 0.75rem;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 3.75rem;
+  border-radius: 0.5rem;
+  padding-left: 0.9375rem;
+  background-color: var(--CardBackground-color);
+  box-shadow: 0 0.25rem 0.375rem 0 rgba(54, 78, 126, 0.1015);
+  margin-bottom: 1.25rem;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 100%;
+  letter-spacing: 0;
+  cursor: pointer;
+}
+
+/* Responsive design styling */
+
+/* Tablet responsive */
+
+@media screen and (max-width: 1023px) {
+  .kanban-sidebar {
+    display: none;
+  }
+
+  .kanban-logo-div {
+    display: none;
+  }
+
+  .menu-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.75rem;
+  }
+
+  .menu-toggle {
+    display: block;
+    width: 1.875rem;
+    height: 1.875rem;
+    margin-right: 0.625rem;
+    cursor: pointer;
+  }
+
+  .launchCareer-btn {
+    font-size: 0.8rem;
+    padding-left: 0.9375rem;
+    margin-right: 0.9375rem;
+    font-weight: 700;
+  }
+
+  .task-card {
+    padding: 0;
+    width: 100%;
+    align-items: center;
+  }
+
+  main {
+    grid-template-columns: repeat(2, minmax(0, 360px));
+    gap: 8px;
+  }
+
+  .column-header {
+    height: 4rem;
+    padding: 0 0.625rem 1.125rem;
+    border: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .kanban-logo-div {
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
+
+  .column-heading {
+    padding: 0;
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .column-div {
+    width: 100%;
+  }
+
+  /* ==== Button hidden on screens less than 1023px */
+
+  .addTask-btn {
+    display: none;
+  }
+
+  /* ==== Display mobile add task button on mobile screens */
+  #mobileAddTask-btn {
+    display: block;
+  }
+}
+
+/* mobile smartphone responsive */
+
+@media screen and (max-width: 576px) {
+  main {
+    grid-template-columns: minmax(0, 23.75rem);
+  }
+
+  .column-div {
+    padding: 1.5rem;
+  }
+}
+
+/* Modal backdrop */
+.modal {
+  display: none; /* hidden by default */
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.show {
+  display: flex;
+}
+
+/* Modal box */
+.modal-content {
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+/* Modal heading */
+#modalTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+/* Labels */
+form label {
+  font-weight: 700;
+  font-size: 0.75rem;
+  margin-bottom: 0.25rem;
+  display: block;
+  color: #828fa3;
+}
+
+/* Inputs + textarea + select */
+form input,
+form textarea,
+form select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+select {
+  cursor: pointer;
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Save button */
+.submit-btn {
+  width: 100%;
+  background: var(--btn-color);
+  color: white;
+  border: none;
+  border-radius: 1.25rem;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background: var(--btnHover-color);
+}
+
+/* Top right close button */
+.close-btn {
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--taskCloseBtn);
+  position: absolute;
+  top: 16px;
+  right: 20px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ===== Add task button styling ===== */
+
+.addTask-btn {
+  background-color: var(--btn-color);
+  color: var(--btnText-color);
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 24px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+  position: absolute;
+  right: 5%;
+  bottom: 40%;
+}
+
+.addTask-btn:hover {
+  background-color: var(--btnHover-color);
+}
+
+/* ===== Mobile add task button styling ===== */
+
+.addTaskMobile-btn {
+  width: 2.0625rem;
+  height: 2.0625rem;
+  border: none;
+  border-radius: 1.5rem;
+  background-color: var(--btn-color);
+  color: var(--btnText-color);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  position: absolute;
+  top: 15%;
+  right: 5%;
+  bottom: 40%;
+  display: none;
+}
+
+/* Style all placeholders */
+form input::placeholder,
+form textarea::placeholder {
+  color: #b2b6bb;
+  font-size: 0.8125rem;
+  font-family: "Plus Jakarta Sans", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+}
