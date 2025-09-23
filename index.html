@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kanban Board</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="shortcut icon" href="assets/favicon.svg" type="image/x-icon" />
+    <script type="module" src="js/script.js" defer></script>
+  </head>
+  <body>
+    <div class="flex-wrapper">
+      <!-- Navigation Sidebar: Contains the logo, navigation links for boards, and theme toggle. -->
+      <nav class="kanban-sidebar">
+        <div class="kanban-logo-div">
+          <img
+            src="assets/logo-light.svg"
+            alt="Shows Kanban logo"
+            class="kanban-logo"
+          />
+        </div>
+        <div class="kanban-nav-links">
+          <h4 class="allBoards-heading">ALL BOARDS (1)</h4>
+          <button class="launchCareer-btn">Launch Career</button>
+        </div>
+      </nav>
+
+      <!-- Main Layout: Header with board title, add task button, and main content area for task columns. -->
+      <div class="layout">
+        <header class="column-header">
+          <div class="menu-togle-btn">
+            <img
+              src="assets/favicon.svg"
+              alt="menu-toggle"
+              class="menu-toggle"
+            />
+          </div>
+          <div>
+            <h2 class="column-heading">Launch Career</h2>
+          </div>
+          <button class="addTask-btn">+AddNewTask</button>
+          <button class="addTaskMobile-btn" id="mobileAddTask-btn">+</button>
+        </header>
+
+        <div class="task-card">
+          <main>
+            <!-- Task Columns: Display tasks grouped by status (TODO, DOING, DONE). -->
+            <div class="column-div">
+              <div>
+                <span
+                  ><img src="assets/todo-iconboard.png" alt="Todo status icon"
+                /></span>
+                <h4 class="status-heading todo-heading">TODO (0)</h4>
+              </div>
+              <!-- Tasks container for TODO -->
+              <div class="todo-container"></div>
+            </div>
+            <!-- DOING Column -->
+            <div class="column-div">
+              <div>
+                <span
+                  ><img
+                    src="assets/doing-iconboard.png"
+                    alt="Doing status icon"
+                /></span>
+                <h4 class="status-heading doing-heading">DOING (0)</h4>
+              </div>
+              <!-- Tasks container for DOING -->
+              <div class="doing-container"></div>
+            </div>
+            <!-- DONE Column -->
+            <div class="column-div">
+              <div>
+                <span
+                  ><img src="assets/done-iconboard.png" alt="Done status icon"
+                /></span>
+                <h4 class="status-heading done-heading">DONE (0)</h4>
+              </div>
+              <!-- Tasks container for DONE -->
+              <div class="done-container"></div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+    <!-- Task Modal -->
+    <div id="taskModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+
+        <form id="taskForm">
+          <h2 id="modalTitle">Task</h2>
+
+          <label for="taskTitle">Title</label>
+          <input
+            type="text"
+            id="taskTitle"
+            required
+            placeholder="e.g. Take chilled break"
+          />
+
+          <label for="taskDescription">Description</label>
+          <textarea
+            id="taskDescription"
+            placeholder="e.g Pet your dog, have a cup of coffee, 
+dance to your favourite song and come 
+back to crush this challenge."
+          ></textarea>
+
+          <label for="taskStatus">Status</label>
+          <select id="taskStatus">
+            <option value="todo">todo</option>
+            <option value="doing">doing</option>
+            <option value="done">done</option>
+          </select>
+
+          <!-- hidden field to track editing -->
+          <input type="hidden" id="taskId" />
+
+          <div class="modal-footer">
+            <button type="submit" class="submit-btn">Save Task</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
