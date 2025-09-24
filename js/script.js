@@ -280,6 +280,7 @@ function setupModalEventListeners(tasksRef) {
  * - Renders tasks into their respective columns.
  * - Sets up modal and form event listeners with a reference to tasks array.
  * - Optionally exposes the tasks array globally for debugging.
+ * - Wires  delete handler in the modal
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -291,4 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // modal + form wiring (pass tasks array reference)
   setupModalEventListeners(tasks);
+
+  // Wire delete handler
+  setupDeleteHandler(tasks);
 });
