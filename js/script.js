@@ -153,6 +153,32 @@ function openTaskModal(task = null) {
   titleField.focus();
 }
 
+/**
+ * Handle deleting a task by ID with confirmation
+ * @param {Array<Object>} tasksRef
+ */
+function setupDeleteHandler(tasksRef) {
+  const deleteBtn = document.getElementById("deleteTaskBtn");
+  if (!deleteBtn) return;
+
+  deleteBtn.addEventListener("click", () => {
+    const idField = document.getElementById("taskId");
+    const taskId = idField.value;
+
+    if (!taskId) return; // nothing to delete in add mode
+
+    if (confirm("Are you sure you want to delete this task?")) {
+      const index = tasksRef.findIndex((t) => String(t.id) === String(taskId));
+      if (index > -1) {
+        tasksRef.splice(index, 1); // remove task
+        saveTasks(tasksRef);
+        renderTasks(tasksRef);
+        closeTaskModal();
+      }
+    }
+  });
+}
+
 /** Close modal */
 function closeTaskModal() {
   const modal = document.getElementById("taskModal");
