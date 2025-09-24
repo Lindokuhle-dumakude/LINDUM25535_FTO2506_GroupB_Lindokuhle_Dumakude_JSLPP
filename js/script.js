@@ -128,6 +128,7 @@ function openTaskModal(task = null) {
   const descField = document.getElementById("taskDescription");
   const statusField = document.getElementById("taskStatus");
   const submitBtn = modal.querySelector(".submit-btn");
+  const deleteBtn = document.getElementById("deleteTaskBtn");
 
   if (task) {
     modalTitle.textContent = "Edit Task";
@@ -136,6 +137,7 @@ function openTaskModal(task = null) {
     descField.value = task.description || "";
     statusField.value = task.status;
     submitBtn.textContent = "Save Task";
+    deleteBtn.style.display = "block";
   } else {
     modalTitle.textContent = "Add New Task";
     idField.value = "";
@@ -143,6 +145,7 @@ function openTaskModal(task = null) {
     descField.value = "";
     statusField.value = "todo";
     submitBtn.textContent = "Create Task";
+    deleteBtn.style.display = "none"; // hides delete button in add mode
   }
 
   modal.classList.add("show");
