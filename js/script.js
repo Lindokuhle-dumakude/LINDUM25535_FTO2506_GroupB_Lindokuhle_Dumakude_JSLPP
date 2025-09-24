@@ -115,6 +115,7 @@ function updateColumnCounts(tasks) {
 
 /**
  * Open modal. If `task` is provided, open in Edit mode. If null, open Add mode.
+ * If task provided in edit mode show delete button. If null, in add mode hide delete button.
  * @param {Object|null} task
  */
 function openTaskModal(task = null) {
