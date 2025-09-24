@@ -268,6 +268,13 @@ main {
   }
 }
 
+/* stack Save + Delete button vertically */
+
+.modal-footer {
+  flex-direction: column;
+  gap: 8px;
+}
+
 /* mobile smartphone responsive */
 
 @media screen and (max-width: 576px) {
@@ -387,15 +394,16 @@ textarea {
   background-color: var(--btn-color);
   color: var(--btnText-color);
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 13px;
   border: none;
-  border-radius: 24px;
+  border-radius: 20px;
   padding: 10px 16px;
   cursor: pointer;
   transition: background 0.3s;
   position: absolute;
   right: 5%;
   bottom: 40%;
+  font-family: "Plus Jakarta Sans", Arial, Helvetica, sans-serif;
 }
 
 .addTask-btn:hover {
@@ -429,4 +437,27 @@ form textarea::placeholder {
   font-size: 0.8125rem;
   font-family: "Plus Jakarta Sans", Arial, Helvetica, sans-serif;
   font-weight: 500;
+}
+
+/* ===== Delete task button styling ===== */
+
+.delete-btn {
+  width: 100%;
+  background-color: #ea5555;
+  color: white;
+  border: none;
+  border-radius: 1.25rem;
+  padding: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-left: 20px;
+  display: none; /* default hidden, only in edit mode */
+  transition: background 0.3s;
+  font-family: "Plus Jakarta Sans", Arial, Helvetica, sans-serif;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
 }
