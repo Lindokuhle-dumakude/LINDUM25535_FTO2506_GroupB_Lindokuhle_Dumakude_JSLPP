@@ -343,7 +343,6 @@ form select {
   padding: 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
-  font-size: 13px;
   font-weight: 500;
   margin-bottom: 12px;
   font-family: "Plus Jakarta Sans", Arial, Helvetica, sans-serif;
@@ -353,9 +352,15 @@ select {
   cursor: pointer;
 }
 
+input {
+  font-size: 15px;
+}
+
 textarea {
   min-height: 80px;
   resize: vertical;
+  font-size: 13px;
+  line-height: 22px;
 }
 
 /* Save button */
