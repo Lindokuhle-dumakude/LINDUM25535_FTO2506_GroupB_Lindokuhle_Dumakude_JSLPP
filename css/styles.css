@@ -533,3 +533,33 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(20px);
 }
+
+/* Hide Sidebar Button */
+.hide-sidebar-btn {
+  width: 276px;
+  height: 49.75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: none;
+  background-color: var(--hideSidebarBtnBackground-color);
+  color: #635fc7;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: "Plus Jakarta Sans", Arial, Helvetica, sans-serif;
+  padding: 12px;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  cursor: pointer;
+  position: relative;
+}
+
+.hide-sidebar-btn:hover {
+  background: #e4ebfa;
+}
+
+.hide-sidebar-btn img {
+  position: absolute;
+  left: 10%;
+}
