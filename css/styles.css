@@ -268,13 +268,6 @@ main {
   }
 }
 
-/* stack Save + Delete button vertically */
-
-.modal-footer {
-  flex-direction: column;
-  gap: 8px;
-}
-
 /* mobile smartphone responsive */
 
 @media screen and (max-width: 576px) {
@@ -284,6 +277,16 @@ main {
 
   .column-div {
     padding: 1.5rem;
+  }
+
+  /* stack Save + Delete button vertically */
+  .modal-footer {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .delete-btn {
+    margin-right: 20px;
   }
 }
 
@@ -363,10 +366,12 @@ textarea {
   border: none;
   border-radius: 1.25rem;
   padding: 12px;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 800;
   cursor: pointer;
   transition: background 0.3s;
+  margin-top: 10px;
+  font-family: "Plus Jakarta Sans", Arial, Helvetica, sans-serif;
 }
 
 .submit-btn:hover {
