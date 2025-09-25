@@ -1,20 +1,18 @@
-// Assumes you have: export const initialTasks = [...] in js/initialData.js
-import { initialTasks } from "./initialData.js";
-
 const STORAGE_KEY = "tasks";
+const API_URL = "https://jsl-kanban-api.vercel.app/";
 
 /**
- * Load tasks from localStorage. If none are saved, fall back to initialTasks.
- * @returns {Array<Object>} list of task objects
+ * Load tasks from localStorage.
+ * @returns {Array<Object>} list of task objects or empty array
  */
 function loadTasks() {
   const raw = localStorage.getItem(STORAGE_KEY);
-  if (!raw) return [...initialTasks]; // return copy of initial tasks
+  if (!raw) return [];
   try {
     return JSON.parse(raw);
   } catch (error) {
     console.error("Failed to parse tasks from localStorage", error);
-    return [...initialTasks];
+    return [];
   }
 }
 
@@ -24,6 +22,31 @@ function loadTasks() {
  */
 function saveTasks(tasks) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+}
+
+/**
+ * Fetch tasks from the remote API.
+ * Falls back to an empty array if API request fails.
+ * @async
+ * @returns {Promise<Array<Object>>} Array of normalized task objects
+ */
+async function fetchInitialTasks() {
+  try {
+    const res = await fetch(API_URL);
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+    const data = await res.json();
+
+    // Normalize tasks to ensure consistent structure
+    return data.map((task, index) => ({
+      id: task.id || index + 1,
+      title: task.title || "Untitled Task",
+      description: task.description || "",
+      status: task.status || "todo",
+    }));
+  } catch (error) {
+    console.error("Failed to fetch tasks from API:", error);
+    return []; // fallback if fetch fails
+  }
 }
 
 /**
@@ -277,23 +300,38 @@ function setupModalEventListeners(tasksRef) {
 
 /**
  * Initialize the Task Board application once the DOM is fully loaded.
- * - Loads tasks from localStorage (or fallback initial data).
+ * - Loads tasks from localStorage if available.
+ * - If empty, fetches from API.
  * - Renders tasks into their respective columns.
- * - Sets up modal and form event listeners with a reference to tasks array.
- * - Optionally exposes the tasks array globally for debugging.
- * - Wires  delete handler in the modal
+ * - Sets up modal and form event listeners.
  */
 
-document.addEventListener("DOMContentLoaded", () => {
-  // load tasks into memory
-  const tasks = loadTasks();
+document.addEventListener("DOMContentLoaded", async () => {
+  let tasks = loadTasks();
+
+  // Show loading message
+  const main = document.querySelector("main");
+  let loadingEl;
+  if (main) {
+    loadingEl = document.createElement("p");
+    loadingEl.className = "loading";
+    loadingEl.textContent = "Loading tasks...";
+    main.appendChild(loadingEl);
+  }
+
+  // If no tasks in localStorage, fetch from API
+  if (!tasks || tasks.length === 0) {
+    tasks = await fetchInitialTasks();
+    saveTasks(tasks);
+  }
+
+  // Remove loading message safely
+  if (loadingEl) loadingEl.remove();
 
   // initial render
   renderTasks(tasks);
 
-  // modal + form wiring (pass tasks array reference)
+  // Wire up modal and delete handlers
   setupModalEventListeners(tasks);
-
-  // Wire delete handler
   setupDeleteHandler(tasks);
 });
