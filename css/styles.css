@@ -491,6 +491,10 @@ form textarea::placeholder {
   margin-bottom: 20px;
 }
 
+.theme-toggle img.dark-icon {
+  filter: brightness(0); 
+}
+
 /* Toggle Switch */
 .switch {
   position: relative;
