@@ -17,6 +17,8 @@
   --text-color: #000112; /* black */
   --btnText-color: #ffffff; /* white */
   --taskCloseBtn: red; /* red */
+  --toggleThemeBackground-color: #f4f7fd; /* Light grey */
+  --hideSidebarBtnBackground-color: #f4f7fd; /* Light grey */
 }
 
 /* Default Styling */
@@ -472,4 +474,62 @@ form textarea::placeholder {
 
 .delete-btn:hover {
   background-color: #c0392b;
+}
+
+/* Theme Toggle Section */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--toggleThemeBackground-color);
+  padding: 10px;
+  border-radius: 6px;
+  margin-left: 16px;
+  margin-right: 25px;
+  margin-top: 320px;
+  margin-bottom: 20px;
+}
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #635fc7;
+  border-radius: 20px;
+  transition: 0.4s;
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #ccc;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
 }
