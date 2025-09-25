@@ -160,7 +160,7 @@ function openTaskModal(task = null) {
     titleField.value = task.title;
     descField.value = task.description || "";
     statusField.value = task.status;
-    submitBtn.textContent = "Save Task";
+    submitBtn.textContent = "Save Changes";
     deleteBtn.style.display = "block";
   } else {
     modalTitle.textContent = "Add New Task";
