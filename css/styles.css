@@ -340,8 +340,10 @@ form select {
   padding: 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
-  font-size: 0.95rem;
+  font-size: 13px;
+  font-weight: 500;
   margin-bottom: 12px;
+  font-family: "Plus Jakarta Sans", Arial, Helvetica, sans-serif;
 }
 
 select {
