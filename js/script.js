@@ -313,27 +313,63 @@ function setupSidebarInteraction() {
   }
 }
 
+/**
+ * Updates the Kanban board logo based on the selected theme.
+ *
+ * @param {"light"|"dark"} theme - The current theme.
+ * Use "dark" to set dark logo, "light" for light logo.
+ */
+function updateLogo(theme) {
+  const desktopLogo = document.getElementById("kanbanLogo");
+  const mobileLogo = document.querySelector(".menu-toggle");
+
+  if (desktopLogo) {
+    desktopLogo.src =
+      theme === "dark"
+        ? desktopLogo.dataset.logoDark
+        : desktopLogo.dataset.logoLight;
+  }
+
+  if (mobileLogo) {
+    mobileLogo.src =
+      theme === "dark"
+        ? mobileLogo.dataset.logoDark
+        : mobileLogo.dataset.logoLight;
+  }
+}
+
 function setupThemeToggle() {
   const desktopToggle = document.getElementById("themeToggle");
   const mobileToggle = document.getElementById("themeToggleMobile");
   const body = document.body;
 
   // Load saved theme
-  const savedTheme = localStorage.getItem("theme");
+  const savedTheme = localStorage.getItem("theme") || "light";
+
+  // Apply saved theme
   if (savedTheme === "dark") {
     body.classList.add("dark");
     if (desktopToggle) desktopToggle.checked = true;
     if (mobileToggle) mobileToggle.checked = true;
+  } else {
+    body.classList.remove("dark");
+    if (desktopToggle) desktopToggle.checked = false;
+    if (mobileToggle) mobileToggle.checked = false;
   }
 
+  // Set logo based on saved theme
+  updateLogo(savedTheme);
+
   function toggleTheme(isDark) {
-    if (isDark) {
-      body.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      body.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
+    const theme = isDark ? "dark" : "light";
+
+    if (isDark) body.classList.add("dark");
+    else body.classList.remove("dark");
+
+    localStorage.setItem("theme", theme);
+
+    // Update logo
+    updateLogo(theme);
 
     // Keep both toggles in sync
     if (desktopToggle) desktopToggle.checked = isDark;
