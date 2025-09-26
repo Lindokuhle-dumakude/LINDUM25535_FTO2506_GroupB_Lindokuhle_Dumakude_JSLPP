@@ -647,3 +647,33 @@ body.dark .modal-content {
   background-color: #2b2c37; /* dark grey modal background */
   color: #ffffff; /* modal text white */
 }
+
+/* Priority styling */
+
+.card {
+  position: relative;
+}
+
+/* Priority dots */
+.priority-label {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+/* Dot colors for priority */
+.priority-label.low {
+  background-color: #4caf50; /* green */
+}
+
+.priority-label.medium {
+  background-color: #ff9800; /* orange */
+}
+
+.priority-label.high {
+  background-color: #f44336; /* red */
+}
