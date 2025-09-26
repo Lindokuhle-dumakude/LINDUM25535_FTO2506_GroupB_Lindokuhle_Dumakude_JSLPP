@@ -76,3 +76,19 @@ The app supports **💾 localStorage persistence**, **🌐 API integration**, **
 
 - Mobile side bar functionality
 - Sort priority levels from High, Medium, Low.
+
+---
+
+**Netlify link**
+
+- https://kanban-management-application.netlify.app/
+
+---
+
+**Presentation Link**
+
+- Part one (https://www.loom.com/share/09365b87d1f7481f9a6abca7b6b00546?sid=7370130b-f093-47ab-85e4-26fe3452978b)
+
+- Part two (https://www.loom.com/share/c30f6f9d431241ab881c1b4b58365c66?sid=43eda820-d930-44e8-8cc4-a702eee40aac)
+
+-Part three (https://www.loom.com/share/5552771912a04123b3bb68b54a652ef5?sid=9a855319-eab6-4f5c-9641-beba6cb37c32)
