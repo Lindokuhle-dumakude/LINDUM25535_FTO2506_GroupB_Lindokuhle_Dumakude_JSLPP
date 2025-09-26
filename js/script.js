@@ -266,6 +266,54 @@ function handleFormSubmit(e, tasksRef) {
 }
 
 /**
+ * Toggle sidebar visibility
+ * @param {boolean} isVisible - true to show, false to hide
+ * Save preference to local storage.
+ */
+function toggleSidebar(isVisible) {
+  const sidebar = document.querySelector(".kanban-sidebar");
+  const hideBtn = document.querySelector(".hide-sidebar-btn");
+  const showBtn = document.querySelector(".show-sidebar-btn");
+
+  if (!sidebar || !hideBtn || !showBtn) return;
+
+  if (isVisible) {
+    sidebar.style.display = "block";
+    hideBtn.style.display = "inline-block";
+    showBtn.style.display = "none";
+  } else {
+    sidebar.style.display = "none";
+    hideBtn.style.display = "none";
+    showBtn.style.display = "inline-block";
+  }
+
+  localStorage.setItem("sidebarVisible", JSON.stringify(isVisible));
+}
+
+/**
+ * Setup sidebar buttons for hiding/showing
+ * Load saved state from localStorage on page load.
+ */
+function setupSidebarInteraction() {
+  const hideBtn = document.querySelector(".hide-sidebar-btn");
+  const showBtn = document.querySelector(".show-sidebar-btn");
+
+  if (hideBtn) {
+    hideBtn.addEventListener("click", () => toggleSidebar(false));
+  }
+  if (showBtn) {
+    showBtn.addEventListener("click", () => toggleSidebar(true));
+  }
+
+  const savedState = JSON.parse(localStorage.getItem("sidebarVisible"));
+  if (savedState === false) {
+    toggleSidebar(false);
+  } else {
+    toggleSidebar(true);
+  }
+}
+
+/**
  * Set up modal event listeners: close button, backdrop click, add buttons, and form submit.
  * @param {Array<Object>} tasksRef
  */
@@ -331,7 +379,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   // initial render
   renderTasks(tasks);
 
-  // Wire up modal and delete handlers
+  // Wire up modal + delete + sidebar handlers
   setupModalEventListeners(tasks);
   setupDeleteHandler(tasks);
+  setupSidebarInteraction();
 });
