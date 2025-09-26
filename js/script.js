@@ -69,6 +69,54 @@ function findTaskById(tasks, id) {
 }
 
 /**
+ * Create and display the priority label on a task card.
+ * @param {HTMLElement} taskCard - The DOM element representing the task card.
+ * @param {"Low" | "Medium" | "High"} priority - The priority level of the task.
+ */
+function displayPriority(taskCard, priority) {
+  const priorityEl = document.createElement("span");
+  priorityEl.classList.add("priority-label", priority.toLowerCase());
+  priorityEl.textContent = priority;
+  taskCard.appendChild(priorityEl);
+}
+
+/**
+ * Edit the priority level of an existing task and update localStorage.
+ * @param {string} taskId - The unique identifier of the task to update.
+ * @param {"High" | "Medium" | "Low"} newPriority - The new priority level.
+ */
+function editTaskPriority(taskId, newPriority) {
+  let tasks = loadTasks();
+  tasks = tasks.map((task) =>
+    String(task.id) === String(taskId)
+      ? { ...task, priority: newPriority }
+      : task
+  );
+  saveTasks(tasks);
+  updateTaskCardPriority(taskId, newPriority);
+}
+
+/**
+ * Update the priority label displayed on a task card.
+ * @param {string} taskId - The unique identifier of the task.
+ * @param {"High" | "Medium" | "Low"} newPriority - The updated priority level.
+ */
+function updateTaskCardPriority(taskId, newPriority) {
+  const taskCard = document.querySelector(`[data-id='${taskId}']`);
+  if (!taskCard) return;
+
+  let priorityEl = taskCard.querySelector(".priority-label");
+  if (!priorityEl) {
+    priorityEl = document.createElement("span");
+    priorityEl.classList.add("priority-label");
+    taskCard.appendChild(priorityEl);
+  }
+
+  priorityEl.textContent = newPriority;
+  priorityEl.className = `priority-label ${newPriority.toLowerCase()}`;
+}
+
+/**
  * Create a single task card element and attach click handler to open edit modal.
  * @param {Object} task
  * @param {number} task.id
