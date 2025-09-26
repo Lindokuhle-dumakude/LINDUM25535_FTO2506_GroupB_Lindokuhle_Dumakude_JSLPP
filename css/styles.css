@@ -491,10 +491,6 @@ form textarea::placeholder {
   margin-bottom: 20px;
 }
 
-.theme-toggle img.dark-icon {
-  filter: brightness(0);
-}
-
 /* Toggle Switch */
 .switch {
   position: relative;
@@ -531,7 +527,7 @@ form textarea::placeholder {
 }
 
 input:checked + .slider {
-  background-color: #ccc;
+  background-color: #2b2c37;
 }
 
 input:checked + .slider:before {
@@ -584,5 +580,70 @@ input:checked + .slider:before {
 }
 
 .show-sidebar-btn:hover {
-  background-color: #A8A4FF;
+  background-color: #a8a4ff;
+}
+
+/* Theme Toggle (Dark/Light Mode) section */
+
+/* Dark Mode */
+body.dark {
+  --layoutBackground-color: #20212c; /* Very Dark grey */
+  --boardTitle-color: white; /* White */
+  --SidebarBackground-color: #2b2c37; /* Dark grey */
+  --CardBackground-color: #2b2c37; /* Dark grey */
+  --btn-color: #635fc7; /* keep buttons same */
+  --btnHover-color: #4b47b7;
+  --TODOicon-color: #49c4e5;
+  --DOINGicon-color: #8471f2;
+  --DONEicon-color: #67e2ae;
+  --h4Text-color: #828fa3; /* Medium grey */
+  --h2Text-color: #ffffff;
+  --text-color: #ffffff;
+  --btnText-color: #ffffff;
+  --toggleThemeBackground-color: #635fc7;
+  --hideSidebarBtnBackground-color: #635fc7;
+
+  body {
+    background-color: var(--layoutBackground-color);
+    color: var(--text-color);
+  }
+
+  .kanban-sidebar {
+    background-color: var(--SidebarBackground-color);
+  }
+
+  .card {
+    background-color: var(--CardBackground-color);
+  }
+
+  .column-header {
+    background-color: var(--SidebarBackground-color);
+  }
+
+  .status-heading,
+  .allBoards-heading {
+    color: var(--h4Text-color);
+  }
+
+  .hide-sidebar-btn {
+    color: var(--btnText-color);
+  }
+
+  .hide-sidebar-btn:hover {
+    background-color: var(--btnHover-color);
+  }
+
+  .show-sidebar-btn {
+    background-color: #92a0b3;
+  }
+
+  .show-sidebar-btn:hover {
+    background-color: #828fa3;
+  }
+}
+
+/* Dark Mode Modal */
+body.dark .modal-content {
+  background-color: #2b2c37; /* dark grey modal background */
+  color: #ffffff; /* modal text white */
 }
