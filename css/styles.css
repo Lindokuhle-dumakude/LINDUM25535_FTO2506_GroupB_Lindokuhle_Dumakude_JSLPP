@@ -492,7 +492,7 @@ form textarea::placeholder {
 }
 
 .theme-toggle img.dark-icon {
-  filter: brightness(0); 
+  filter: brightness(0);
 }
 
 /* Toggle Switch */
@@ -566,4 +566,23 @@ input:checked + .slider:before {
 .hide-sidebar-btn img {
   position: absolute;
   left: 10%;
+}
+
+/* show Sidebar Button */
+
+.show-sidebar-btn {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 56px;
+  height: 48px;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  border: none;
+  cursor: pointer;
+  display: none;
+}
+
+.show-sidebar-btn:hover {
+  background-color: #A8A4FF;
 }
