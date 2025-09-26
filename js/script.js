@@ -313,6 +313,43 @@ function setupSidebarInteraction() {
   }
 }
 
+function setupThemeToggle() {
+  const desktopToggle = document.getElementById("themeToggle");
+  const mobileToggle = document.getElementById("themeToggleMobile");
+  const body = document.body;
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    body.classList.add("dark");
+    if (desktopToggle) desktopToggle.checked = true;
+    if (mobileToggle) mobileToggle.checked = true;
+  }
+
+  function toggleTheme(isDark) {
+    if (isDark) {
+      body.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      body.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+
+    // Keep both toggles in sync
+    if (desktopToggle) desktopToggle.checked = isDark;
+    if (mobileToggle) mobileToggle.checked = isDark;
+  }
+
+  if (desktopToggle)
+    desktopToggle.addEventListener("change", (e) =>
+      toggleTheme(e.target.checked)
+    );
+  if (mobileToggle)
+    mobileToggle.addEventListener("change", (e) =>
+      toggleTheme(e.target.checked)
+    );
+}
+
 /**
  * Set up modal event listeners: close button, backdrop click, add buttons, and form submit.
  * @param {Array<Object>} tasksRef
@@ -383,4 +420,5 @@ document.addEventListener("DOMContentLoaded", async () => {
   setupModalEventListeners(tasks);
   setupDeleteHandler(tasks);
   setupSidebarInteraction();
+  setupThemeToggle();
 });
