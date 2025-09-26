@@ -155,7 +155,7 @@ function openTaskModal(task = null) {
   const deleteBtn = document.getElementById("deleteTaskBtn");
 
   if (task) {
-    modalTitle.textContent = "Edit Task";
+    modalTitle.textContent = "Task";
     idField.value = task.id;
     titleField.value = task.title;
     descField.value = task.description || "";
