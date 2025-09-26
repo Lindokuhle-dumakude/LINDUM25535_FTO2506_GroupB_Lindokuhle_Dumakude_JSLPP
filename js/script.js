@@ -193,6 +193,7 @@ function updateColumnCounts(tasks) {
 /**
  * Open modal. If `task` is provided, open in Edit mode. If null, open Add mode.
  * If task provided in edit mode show delete button. If null, in add mode hide delete button.
+ * Show / edit priority
  * @param {Object|null} task
  */
 function openTaskModal(task = null) {
@@ -205,6 +206,7 @@ function openTaskModal(task = null) {
   const titleField = document.getElementById("taskTitle");
   const descField = document.getElementById("taskDescription");
   const statusField = document.getElementById("taskStatus");
+  const priorityField = document.getElementById("taskPriority");
   const submitBtn = modal.querySelector(".submit-btn");
   const deleteBtn = document.getElementById("deleteTaskBtn");
 
@@ -214,6 +216,7 @@ function openTaskModal(task = null) {
     titleField.value = task.title;
     descField.value = task.description || "";
     statusField.value = task.status;
+    priorityField.value = task.priority || "Medium";
     submitBtn.textContent = "Save Changes";
     deleteBtn.style.display = "block";
   } else {
@@ -222,6 +225,7 @@ function openTaskModal(task = null) {
     titleField.value = "";
     descField.value = "";
     statusField.value = "todo";
+    priorityField.value = "Medium";
     submitBtn.textContent = "Create Task";
     deleteBtn.style.display = "none"; // hides delete button in add mode
   }
