@@ -76,7 +76,6 @@ function findTaskById(tasks, id) {
 function displayPriority(taskCard, priority) {
   const priorityEl = document.createElement("span");
   priorityEl.classList.add("priority-label", priority.toLowerCase());
-  priorityEl.textContent = priority;
   taskCard.appendChild(priorityEl);
 }
 
