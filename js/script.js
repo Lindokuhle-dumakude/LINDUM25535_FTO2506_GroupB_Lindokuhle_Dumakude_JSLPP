@@ -83,7 +83,7 @@ function displayPriority(taskCard, priority) {
 /**
  * Edit the priority level of an existing task and update localStorage.
  * @param {string} taskId - The unique identifier of the task to update.
- * @param {"High" | "Medium" | "Low"} newPriority - The new priority level.
+ * @param {"Low" | "Medium" | "High"} newPriority - The new priority level.
  */
 function editTaskPriority(taskId, newPriority) {
   let tasks = loadTasks();
@@ -99,7 +99,7 @@ function editTaskPriority(taskId, newPriority) {
 /**
  * Update the priority label displayed on a task card.
  * @param {string} taskId - The unique identifier of the task.
- * @param {"High" | "Medium" | "Low"} newPriority - The updated priority level.
+ * @param {"Low" | "Medium" | "High"} newPriority - The updated priority level.
  */
 function updateTaskCardPriority(taskId, newPriority) {
   const taskCard = document.querySelector(`[data-id='${taskId}']`);
@@ -124,12 +124,18 @@ function updateTaskCardPriority(taskId, newPriority) {
  * @param {string} task.description
  * @param {string} task.status
  * @returns {HTMLElement}
+ * add priority display
  */
 function createTaskCard(task) {
   const card = document.createElement("div");
   card.className = "card";
   card.textContent = task.title;
   card.dataset.id = task.id;
+
+  // show priority label if available
+  if (task.priority) {
+    displayPriority(card, task.priority);
+  }
 
   // open modal in edit mode when clicked
   card.addEventListener("click", () => {
@@ -272,10 +278,12 @@ function handleFormSubmit(e, tasksRef) {
   const titleField = document.getElementById("taskTitle");
   const descField = document.getElementById("taskDescription");
   const statusField = document.getElementById("taskStatus");
+  const priorityField = document.getElementById("taskPriority"); // add in modal form
 
   const title = titleField.value.trim();
   const description = descField.value.trim();
   const status = statusField.value;
+  const priority = priorityField ? priorityField.value : "Medium"; // default medium
 
   // Validate title
   if (!title) {
@@ -293,6 +301,7 @@ function handleFormSubmit(e, tasksRef) {
       task.title = title;
       task.description = description;
       task.status = status;
+      task.priority = priority;
     } else {
       console.warn("Tried to edit non-existent task id:", taskId);
     }
@@ -303,6 +312,7 @@ function handleFormSubmit(e, tasksRef) {
       title,
       description,
       status,
+      priority,
     };
     tasksRef.push(newTask);
   }
